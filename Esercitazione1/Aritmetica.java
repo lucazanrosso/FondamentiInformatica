@@ -37,9 +37,9 @@ public class Aritmetica {
 		int operando1 = in.nextInt();
 		/*
 		Se inseriamo un numero negativo un ciclo continuerà a chiederci di inserire un numero positivo.
-		Ho deciso di fare qui un controllo generale perché risultava più lungo e ripetitivo fare il controllo
-		all'iterno di ogni metodo. L'unico controllo aggiuntivo è presente per il divisore all'interno del
-		metodo divisione perché deve essere, oltre che positivo, anche diverso da 0.
+		Ho deciso di fare qui un controllo generale perché al momento ci basta questo. Quando in futuro 
+		però dovremo separare il metodo main dalla classe Aritmetica sarebbe meglio implementare per ogni 
+		metodo i rispettivi controlli. In questo caso gli unici controlli aggiuntivi sono presenti per il divisore e la potenza.
 		*/
 		while(operando1 < 0) {
 			System.out.println("Hai inserito un numero negativo, inserisci un numero positivo");
@@ -205,12 +205,24 @@ public class Aritmetica {
 			return resto;
 	}
 	
-	public static int potenza(int radice, int esponente) {
-		int potenza = radice;
+	// Anche per la potenza controllo che, se la base è 0, l'esponente deve essere diverso da 0.
+	public static int potenza(int base, int esponente) {
+		if (base == 0 && esponente == 0) {
+			while (esponente <= 0) {
+			if (esponente == 0) {
+				System.out.println("Hai inserito un esponente uguale a zero con una base uguale a 0, inserisci un esponente positivo e diverso da zero");
+				esponente = in.nextInt();
+			} else {
+				System.out.println("Hai inserito un esponente negativo, inserisci un esponente positivo e diverso da zero");
+				esponente = in.nextInt();
+			}
+		}
+		}
+		int potenza = base;
 		if (esponente == 0)
 			return 1;
 		while(esponente != 1) {
-			potenza = prodotto(potenza, radice);
+			potenza = prodotto(potenza, base);
 			esponente = predecessore(esponente);
 		}
 		return potenza;
