@@ -10,16 +10,13 @@ public class TestMotoPolizza {
 		Moto yamaha = new Moto("Andrea", "Zanrosso", "VI", 2015);
 		Polizza polizzaYamaha = new Polizza(yamaha, 3, 2015);
 		
-		System.out.println(honda.getTarga());
-		System.out.println(yamaha.getTarga());
-		
-		// IL METODO EQUALS DEFINITO NELLA CLASSE MOTO NON FUNZIONA
-		//if (honda.equals(yamaha))
-		if (honda.getTarga() == yamaha.getTarga())
+		if (honda.equals(yamaha))
 			System.out.println("Attenzione: le due moto sono uguali");
 		else
 			System.out.println("Bene, le due moto sono diverse");
 		
+		System.out.println(polizzaHonda);
+		System.out.println(polizzaYamaha);
 		
 	}
 

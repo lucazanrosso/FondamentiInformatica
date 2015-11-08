@@ -42,9 +42,8 @@ public class Moto {
 	}
 	
 	public boolean equals(Moto moto) {
-		if (getTarga() == moto.getTarga())
+		if (this.getTarga() == moto.getTarga())
 			return true;
-		else
-			return false;
+		return false;
 	}
 }

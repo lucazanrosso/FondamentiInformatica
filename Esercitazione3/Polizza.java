@@ -31,5 +31,15 @@ public class Polizza {
 	/*public static void aggiorna(int bonusMalus) {
 		this.bonusMalus = bonusMalus;
 	}*/
+	
+	// Non è il massimo usare il metodo toString per visualizzare cosi tanti dati
+	public String toString() {
+		return "Proprietario: " + moto.getProprietario() + "\n" +
+				"Targa: " + moto.getTarga() + "\n" +
+				"Anno Immatricolazione: " + moto.getAnnoImmatricolazione() + "\n" + 
+				"Durata Polizza in anni: " + this.getAnniDurata() + "\n" + 
+				"Anno di stipula della Polizza: " + this.getAnnoStipula() + "\n" + 
+				"Bonus Malus: " + this.getBonusMalus() + "\n";
+	}
 
 }
