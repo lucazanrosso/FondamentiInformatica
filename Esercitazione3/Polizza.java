@@ -27,10 +27,9 @@ public class Polizza {
 		return bonusMalus;
 	}
 	
-	// NON si può usare una variabile non statica in un metodo statico!!!!!!!!!!!!!!!!!!!!!
-	/*public static void aggiorna(int bonusMalus) {
-		this.bonusMalus = bonusMalus;
-	}*/
+	public static void aggiornaBonusMalus(Polizza polizza, int bonusMalus) {
+		polizza.bonusMalus += bonusMalus;
+	}
 	
 	// Non è il massimo usare il metodo toString per visualizzare cosi tanti dati
 	public String toString() {

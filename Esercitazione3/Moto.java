@@ -11,11 +11,16 @@ public class Moto {
 	private String provincia;
 	private int annoImmatricolazione;
 	
+	//private static int contaMoto = 0;
+	//private String lettere = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	//private String provincia ) @PDVIVEPATOMIGE<
 	public Moto(String nome, String cognome, String provincia, int annoImmatricolazione) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.provincia = provincia;
 		this.annoImmatricolazione = annoImmatricolazione;
+		
+		//contaMoto = contaMoto + 1;
 	}
 	
 	public String getProprietario() {
@@ -30,11 +35,9 @@ public class Moto {
 		return annoImmatricolazione;
 	}
 	
-	// Metodo STATICO cambiaProvincia???????????????????????????????????????????????????????????
-	// Bisogna avere il riferimento dell'oggetto per cambiare la provincia.
-	/*public static void cambiaProvincia(String targa) {
-		
-	}*/
+	public static void cambiaProvincia(Moto moto, String provincia) {
+		moto.provincia = provincia;
+	}
 	
 	public void cambiaProprietario(String nome, String cognome) {
 		this.nome = nome;

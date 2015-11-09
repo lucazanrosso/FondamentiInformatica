@@ -10,10 +10,14 @@ public class TestMotoPolizza {
 		Moto yamaha = new Moto("Andrea", "Zanrosso", "VI", 2015);
 		Polizza polizzaYamaha = new Polizza(yamaha, 3, 2015);
 		
+		Moto.cambiaProvincia(honda, "VE");
+		
 		if (honda.equals(yamaha))
 			System.out.println("Attenzione: le due moto sono uguali");
 		else
 			System.out.println("Bene, le due moto sono diverse");
+			
+		Polizza.aggiornaBonusMalus(polizzaHonda, 150);
 		
 		System.out.println(polizzaHonda);
 		System.out.println(polizzaYamaha);
