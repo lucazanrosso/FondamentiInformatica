@@ -10,7 +10,7 @@ import java.awt.Rectangle;
 			*/
 			Rectangle rectangle1 = new Rectangle(15, 15, 20, 30);
 			Rectangle rectangle2 = new Rectangle(10, 0, 10, 30);
-			Rectangle rectangle3 = new Rectangle(20, 25, 20, 30);
+			Rectangle rectangle3 = new Rectangle(40, 25, 20, 30);
 			
 			/*
 			3.1.3
@@ -43,25 +43,24 @@ import java.awt.Rectangle;
 			Con la traslazione i rettangolo non si spostano alla x e y passati come parametro,
 			ma semplicemente la loro posizione viene incrementata di x e y. 
 			Per cambiare i valori di x e y bisogna usare il metodo setLocation(int x, int y).
+			Per prima cosa, quindi, salvo su due variabili il valore di x e y prima della traslazione,
+			che serviranno per fare il confronto del punto 3.1.6, poi traslo un rettangolo.
 			*/
+			int xBeforeTranslate = (int) rect1.getX();
+			int yBeforeTranslate = (int) rect1.getY();
 			rect1.translate(5, 10);
 			
 			/*
 			3.1.6
-			Confronto rect1, che è stato traslato, con rectangle2 e rectangle3.
+			Confronto rect1, che è stato traslato, con i valori di rectangle1 prima della traslazione.
 			Nota: \u00E8 corrisponde alla lettera accentata. Bisogna scriverlo perché Java non
 			codifica autonomamente i caratteri speciali.
 			*/
 			System.out.println();
-			if (rect1.equals(rectangle2))
-				System.out.println("rect1 \u00E8 uguale a rectangle2");
+			if (rect1.getX() == xBeforeTranslate && rect1.getY() == yBeforeTranslate)
+				System.out.println("rect1 traslato ha la stessa posizione di rect1 prima della traslazione");
 			else
-				System.out.println("rect1 non \u00E8 uguale a rectangle2");
-			
-			if (rect1.equals(rectangle3))
-				System.out.println("rect1 \u00E8 uguale a rectangle3");
-			else
-				System.out.println("rect1 non \u00E8 uguale a rectangle3");
+				System.out.println("rect1 traslato non ha la stessa posizione di rect1 prima della traslazione");
 			
 			/*
 			3.1.7
@@ -93,5 +92,4 @@ import java.awt.Rectangle;
 			double area = rectangle.getWidth() * rectangle.getHeight();
 			return area;
 		}
-		
 }
