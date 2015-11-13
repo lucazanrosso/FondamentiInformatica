@@ -52,7 +52,7 @@ import java.awt.Rectangle;
 			
 			/*
 			3.1.6
-			Confronto rect1, che è stato traslato, con i valori di rectangle1 prima della traslazione.
+			Confronto rect1, che è stato traslato, con i valori di rect1 prima della traslazione.
 			Nota: \u00E8 corrisponde alla lettera accentata. Bisogna scriverlo perché Java non
 			codifica autonomamente i caratteri speciali.
 			*/

@@ -30,7 +30,7 @@ public class TestMotoPolizza {
 		3.2.16
 		Cambio la provincia dell'oggetto honda.
 		*/
-		Moto.cambiaProvincia(honda, "VE");
+		Moto.cambiaProvincia(yamaha, "PU");
 		
 		/*
 		3.2.17
