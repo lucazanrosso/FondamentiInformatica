@@ -107,7 +107,8 @@ public class Moto {
 	La variabile che rende univoco ogni oggetto Moto è la targa, quindi utilizziamo la targa
 	di due oggetti moto per fare il confronto.
 	*/
-	public boolean equals(Moto moto) {
+	public boolean equals(Object o) {
+		Moto moto = (Moto) o;
 		if (this.getTarga() == moto.getTarga())
 			return true;
 		return false;
