@@ -316,6 +316,7 @@ public class Aritmetica {
 	/*
 	4.2.1
 	Segnatura e contro segnatura
+	NON ho usato i while program.
 	*/
 	public static int segnatura(int x) {
 		if (x == 0)
@@ -366,6 +367,7 @@ public class Aritmetica {
 	/*
 	4.2.4
 	Minimo e massimo
+	NON ho usato i while program
 	*/
 	public static int massimo(int x, int y) {
 		return somma(x, differenza(y, x));
