@@ -56,8 +56,8 @@ public class Dipendente {
 	5.4
 	Metodi setter
 	Il metodo setIdentificatore proposto nell'esercitazione 5 presenta un errore.
-	Il metodo è public, quindi può essere chiamato un qualsiasi momento, e il metodo stesso,
-	oltre che modificare il tipo di contratto del dipendente,	va a modificare anche la matricola, 
+	Il metodo è public, quindi può essere chiamato in qualsiasi momento, e il metodo stesso,
+	oltre che modificare il tipo di contratto del dipendente, va a modificare anche la matricola, 
 	che invece dovrebbe restare sempre univoca. In questa classe non ho usato nessun metodo
 	generaMatricola, perché con il metodo statico format della classe String garantisco lo
 	stesso risultato in modo più semplice e con molte meno righe di codice.

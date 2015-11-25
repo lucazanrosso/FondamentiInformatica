@@ -13,7 +13,8 @@ public class Libretto {
 	/*
 	5.8
 	Costruttore
-	Anche qui, come nella classe Dipendente, non scrivo il costruttore di "default".
+	Anche qui, come nella classe Dipendente, non scrivo il costruttore di "default"
+	per gli stessi motivi.
 	*/	
 	public Libretto(Dipendente dipendente, int anniValidita, double benefit) {
 		this.dipendente = dipendente;
