@@ -2,76 +2,76 @@ import java.lang.Math;
 
 public class Complex {
 	
-	private double re;
-	private double im;
+	private NumeroReale re;
+	private NumeroImmaginario im;
 	
 	public Complex() {
-		this.re = 0;
-		this.im = 0;
+		this.re = new NumeroReale(0);
+		this.im = new NumeroImmaginario(0);
 	}
 	
 	public Complex(double re, double im) {
-		this.re = re;
-		this.im = im;
+		this.re = new NumeroReale(re);
+		this.im = new NumeroImmaginario(im);
 	}
 	
 	public Complex add (Complex b) {
 		Complex ret = new Complex();
-		ret.re = this.re + b.re;
-		ret.im = this.im + b.im;
+		ret.re.set(this.re.get() + b.re.get());
+		ret.im.set(this.im.get() + b.im.get());
 		return ret;
 	}
 	
 	public Complex sub(Complex b) {
 		Complex ret = new Complex();
-		ret.re = this.re - b.re;
-		ret.im = this.im - b.im;
+		ret.re.set(this.re.get() - b.re.get());
+		ret.im.set(this.im.get() - b.im.get());
 		return ret;
 	}
 	
 	public double getRe() {
-		return this.re;
+		return this.re.get();
 	}
 	
 	public double getIm() {
-		return this.im;
+		return this.im.get();
 	}
 	
 	public void setRe(double re) {
-		this.re = re;
+		this.re.set(re);
 	}
 	
 	public void setIm(double im) {
-		this.im = im;
+		this.im.set(im);
 	}
 	
 	public void set(double re, double im) {
-		this.re = re;
-		this.im = im;
+		this.re.set(re);
+		this.im.set(im);
 	}
 	
 	public double mod() {
-		return Math.sqrt(this.re * this.re + this.im * this.im);
+		return Math.sqrt(this.re.get() * this.re.get() + this.im.get() * this.im.get());
 	}
 	
 	public double fase() {
-		return Math.atan2(this.im, this.re);
+		return Math.atan2(this.im.get(), this.re.get());
 	}
 	
 	public boolean complexUguali(Complex complex) {
-		if (this.re == complex.re && this.im == complex.im)
+		if (this.re.get() == complex.re.get() && this.im.get() == complex.im.get())
 			return true;
 		return false;
 	}
 	
 	public boolean equals(Object o) {
 		Complex complex = (Complex) o;
-		if (this.re == complex.re && this.im == complex.im)
+		if (this.re.get() == complex.re.get() && this.im.get() == complex.im.get())
 			return true;
 		return false;
 	}
 	
 	public String toString() {
-		return this.re + "+" + this.im + "i";
+		return this.re.get() + "+" + this.im.get() + "i";
 	}
 }
