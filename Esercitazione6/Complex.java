@@ -58,6 +58,19 @@ public class Complex {
 		return Math.atan2(this.im, this.re);
 	}
 	
+	public boolean complexUguali(Complex complex) {
+		if (this.re == complex.re && this.im == complex.im)
+			return true;
+		return false;
+	}
+	
+	public boolean equals(Object o) {
+		Complex complex = (Complex) o;
+		if (this.re == complex.re && this.im == complex.im)
+			return true;
+		return false;
+	}
+	
 	public String toString() {
 		return this.re + "+" + this.im + "i";
 	}

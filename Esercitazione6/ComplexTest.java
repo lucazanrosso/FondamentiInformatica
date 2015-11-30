@@ -16,5 +16,15 @@ public class ComplexTest {
 		
 		Complex d = new Complex(5, 7);
 		System.out.println("d = " + d);
+		
+		if (a.complexUguali(b))
+			System.out.println("I due numeri complessi sono uguali");
+		else
+			System.out.println("I due numeri complessi sono diversi");
+		
+		if (a.equals(b))
+			System.out.println("I due numeri complessi sono uguali");
+		else
+			System.out.println("I due numeri complessi sono diversi");
 	}
 }
