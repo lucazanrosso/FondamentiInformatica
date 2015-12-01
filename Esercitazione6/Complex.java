@@ -28,29 +28,29 @@ public class Complex {
 	6.2.3
 	Metodi getter
 	*/	
-	public double getRe() {
-		return this.re.get();
+	public NumeroReale getRe() {
+		return this.re;
 	}
 	
-	public double getIm() {
-		return this.im.get();
+	public NumeroImmaginario getIm() {
+		return this.im;
 	}
 	
 	/*
 	6.2.4
 	Metodi setter
 	*/
-	public void setRe(double re) {
-		this.re.set(re);
+	public void setRe(NumeroReale re) {
+		this.re.set(re.get());
 	}
 	
-	public void setIm(double im) {
-		this.im.set(im);
+	public void setIm(NumeroImmaginario im) {
+		this.im.set(im.get());
 	}
 	
-	public void set(double re, double im) {
-		this.re.set(re);
-		this.im.set(im);
+	public void set(NumeroReale re, NumeroImmaginario im) {
+		this.re.set(re.get());
+		this.im.set(im.get());
 	}
 	
 	/*
