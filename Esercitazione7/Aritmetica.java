@@ -15,17 +15,23 @@ public class Aritmetica {
 		for (int i = 0; i < operazioni.length; i++)
 			System.out.println("\t" + i + " - " + operazioni[i]);
 		
-		int operazione = inserisciOperazione();
-		System.out.println(operazioni[operazione]);
-		
-		System.out.print("x = ");
-		int x = inserisciNumero();	
-		int y = 0;
-		if (Arrays.asList(operazioniSoloX).contains(operazione)) {
-			System.out.print("y = ");
-			y = inserisciNumero();
+		//IL FOR SERVE PER TESTARE TUTTI I METODI IN POCHE RIGHE
+		for (int i = 0; i < operazioni.length; i++) {
+			int operazione = i;
+			//int operazione = inserisciOperazione();
+			System.out.println(operazioni[operazione]);
+			
+			//System.out.print("x = ");
+			int x = 12;
+			//int x = inserisciNumero();	
+			int y = 0;
+			if (! Arrays.asList(operazioniSoloX).contains(operazione)) {
+				//System.out.print("y = ");
+				y = 3;
+				//y = inserisciNumero();
+			}
+			eseguiOperazione(operazione, x, y);
 		}
-		eseguiOperazione(operazione, x, y);
 	}
 	
 	public static void inizializzaOperazioni() {
