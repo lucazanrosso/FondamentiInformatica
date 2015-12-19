@@ -32,11 +32,10 @@ public class Aritmetica {
 		
 		
 		//IL FOR SERVE PER TESTARE TUTTI I METODI IN POCHE RIGHE
-		/*int x = 8;
-		int y = 2;
+		/*int x = 4;
+		int y = 3;
 		for (int i = 0; i < operazioni.length; i++) {
-			System.out.println();
-			System.out.println(operazioni[i]);
+			System.out.println("\n" + operazioni[i]);
 			eseguiOperazione(i, x, y);
 		}*/
 	}
@@ -241,10 +240,14 @@ public class Aritmetica {
 				System.out.println(parteInteraRadiceQuadrata(x));
 				break;
 			case 35:
-				if (controllaMultiplo(x, y))
-					System.out.println(multiplo(x, y));
-				else
-					System.out.println(x + " non \u00E8 un multiplo di " + y);
+				if (y == 0)
+					System.out.println("Non esiste un numero multiplo di 0");
+				else {
+					if (controllaMultiplo(x, y))
+						System.out.println(multiplo(x, y));
+					else
+						System.out.println(x + " non \u00E8 un multiplo di " + y);
+				}
 				break;
 			case 36:
 				if (x == 0)
@@ -307,20 +310,16 @@ public class Aritmetica {
 		return z;
 	}
 	
-	public static int divisione(int dividendo, int divisore, boolean isQuotient) {
-		
-		int quoziente = 0;
-		int resto = dividendo;
-		
-		while (resto >= divisore) {
-			quoziente = successore(quoziente);
-			resto = differenzaRelativa(resto, divisore);
-		}
-		
+	public static int divisione(int x, int y, boolean isQuotient) {	
+		int z = 0;	
+		while (x >= y) {
+			z = successore(z);
+			x = differenzaRelativa(x, y);
+		}		
 		if (isQuotient)
-			return quoziente;
+			return z;
 		else
-			return resto;
+			return x;
 	}
 	
 	public static int potenza(int x, int y) {
@@ -336,82 +335,61 @@ public class Aritmetica {
 
 	
 	public static int mcd(int x, int y) {
-
-		int mcd = x;
-		int mcd2 = y;
-		
-		if (mcd == 0 || mcd2 == 0)
+		if (x == 0 || y == 0)
 			return 0;
-		while (mcd != mcd2) {
-			while (mcd > mcd2)
-				mcd = differenzaRelativa(mcd, mcd2);
-			while (mcd < mcd2)
-				mcd2 = differenzaRelativa(mcd2, mcd);
-		}
-		
-		return mcd;
+		while (x != y) {
+			while (x > y)
+				x = differenzaRelativa(x, y);
+			while (x < y)
+				y = differenzaRelativa(y, x);
+		}	
+		return x;
 	}
 	
 	public static int mcdAlternativo(int x, int y) {
-		
-		int mcd = x;
-		int resto = y;
-		int parcheggio;
-		
-		if (mcd < resto) {
-			parcheggio = mcd;
-			mcd = resto;
-			resto = parcheggio;
-		}
-		
-		if (resto == 0)
+		int parcheggio;		
+		if (x < y) {
+			parcheggio = x;
+			x = y;
+			y = parcheggio;
+		}		
+		if (y == 0)
 			return 0;
-		while (resto != 0) {
-			parcheggio = resto;
-			resto = divisione(mcd, resto, false);
-			mcd = parcheggio;
-		}
-		
-		return mcd;
+		while (y != 0) {
+			parcheggio = y;
+			y = divisione(x, y, false);
+			x = parcheggio;
+		}		
+		return x;
 	}
 	
-	public static int quadrato(int x) {
-		
+	public static int quadrato(int x) {		
 		int controller = 0;
-		int quadrato = 0;
-		
+		int quadrato = 0;		
 		while (x != controller) {
 			quadrato = somma(quadrato, somma(prodotto(controller, 2), 1));
 			controller = successore(controller);
-		}
-		
+		}		
 		return quadrato;
 	}
 	
 	public static int reverseEngineering(int x, int y) {
-
-		int z = 0;
-		
+		int z = 0;		
 		do {
 			z = somma(z, x);
 			y = predecessore(y);
-		} while (y != 0);
-		
+		} while (y != 0);		
 		return z;
 	}
 
 	public static int potenzaAlternativa(int x, int y) {
-
-		int z = 1;
-		
+		int z = 1;		
 		while (y != 0) {
-
 			if (divisione(y, 2, false) == 1)
 				z = prodotto(z, x);
 			x = quadrato(x);
 			y = divisione(y, 2, true);
-		}
-		
+		}		
 		return z;
 	}
 
@@ -529,7 +507,7 @@ public class Aritmetica {
 	/*
 	7.2.4
 	Differenza Assoluta Riorsiva. Avevo già fatto lo stesso metodo in qualche esercitazione
-	fa usando la minimalizzazione, ma lo rifaccio usando i nuovi metodi appena creati.
+	fa usando la minimalizzazione, ma lo rifaccio usando i nuovi metodi ricorsivi appena creati.
 	*/
 	public static int differenzaAssolutaRelativa(int x, int y) {
 		return sommaRicorsiva(differenzaRelativaRicorsiva(x, y), differenzaRelativaRicorsiva(y, x));
@@ -570,10 +548,10 @@ public class Aritmetica {
 	/*
 	7.3.3
 	Metodo controllaMultiplo e multiplo. Ho indrodotto una seconda variabile in input in modo
-	da generalizzare il multiplo, che quindi non deve essere per forza 33. 
+	da generalizzare il metodo, quindi x non deve essere per forza multiplo 33. 
 	*/
 	public static boolean controllaMultiplo(int x, int y) {
-		int z = 1;
+		int z = 0;
 		while (differenzaRelativaRicorsiva(x, prodottoRicorsivo(y, z)) != 0)
 			z = successore(z);
 		if (x == prodottoRicorsivo(y, z))
@@ -582,7 +560,7 @@ public class Aritmetica {
 	}
 	
 	public static int multiplo(int x, int y) {
-		int z = 1;
+		int z = 0;
 		while (differenzaRelativaRicorsiva(x, prodottoRicorsivo(y, z)) != 0)
 			z = successore(z);
 		return z;
