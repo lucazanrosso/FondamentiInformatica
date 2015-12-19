@@ -3,9 +3,9 @@ import java.util.Arrays;
 
 public class Aritmetica {
 	
-	public static Scanner in = new Scanner(System.in);
-	public static String[] operazioni = new String[37];
-	public static int[] operazioniSoloX = new int[14];
+	public static Scanner in;
+	public static String[] operazioni;
+	public static int[] operazioniSoloX;
 	
 	public static void main (String[] args) {
 		inizializzaOperazioni();
@@ -15,28 +15,36 @@ public class Aritmetica {
 		for (int i = 0; i < operazioni.length; i++)
 			System.out.println("\t" + i + " - " + operazioni[i]);
 		
-		//IL FOR SERVE PER TESTARE TUTTI I METODI IN POCHE RIGHE
-		for (int i = 0; i < operazioni.length; i++) {
-			int operazione = i;
-			//int operazione = inserisciOperazione();
-			System.out.println(operazioni[operazione]);
-			
-			//System.out.print("x = ");
-			int x = 12;
-			//int x = inserisciNumero();	
-			int y = 0;
-			if (! Arrays.asList(operazioniSoloX).contains(operazione)) {
-				//System.out.print("y = ");
-				y = 3;
-				//y = inserisciNumero();
-			}
-			eseguiOperazione(operazione, x, y);
+		in = new Scanner(System.in);
+		int operazione = inserisciOperazione();
+		System.out.println(operazioni[operazione]);
+		
+		System.out.print("x = ");
+		
+		int x = inserisciNumero();	
+		int y = 0;
+		if (! Arrays.asList(operazioniSoloX).contains(operazione)) {
+			System.out.print("y = ");
+			y = inserisciNumero();
 		}
+		
+		eseguiOperazione(operazione, x, y);
+		
+		
+		//IL FOR SERVE PER TESTARE TUTTI I METODI IN POCHE RIGHE
+		/*int x = 8;
+		int y = 2;
+		for (int i = 0; i < operazioni.length; i++) {
+			System.out.println();
+			System.out.println(operazioni[i]);
+			eseguiOperazione(i, x, y);
+		}*/
 	}
 	
 	public static void inizializzaOperazioni() {
+		operazioni = new String[37];
 		operazioni[0] = "Zero";
-		operazioni[0] = "Identita";
+		operazioni[0] = "Identit\u00E0";
 		operazioni[2] = "Successore";
 		operazioni[3] = "Prececessore";
 		operazioni[4] = "Somma";
@@ -70,11 +78,12 @@ public class Aritmetica {
 		operazioni[32] = "Differenza Assoluta Ricorsiva";
 		operazioni[33] = "Radice Quadrata Perfetta";
 		operazioni[34] = "Parte Intera Radice Quadrata";
-		operazioni[35] = "Multiplo 33";
+		operazioni[35] = "Multiplo";
 		operazioni[36] = "Parte Intera Logaritmo";
 	}
 	
 	public static void inizializzaOperazioniSoloX() {
+		operazioniSoloX = new int[13];
 		operazioniSoloX[0] = 0;
 		operazioniSoloX[1] = 1;
 		operazioniSoloX[2] = 2;
@@ -87,8 +96,7 @@ public class Aritmetica {
 		operazioniSoloX[9] = 26;
 		operazioniSoloX[10] = 27;
 		operazioniSoloX[11] = 33;
-		operazioniSoloX[12] = 34;
-		operazioniSoloX[13] = 35;		
+		operazioniSoloX[12] = 34;		
 	}
 	
 	public static int inserisciNumero() {
@@ -102,8 +110,8 @@ public class Aritmetica {
 	
 	public static int inserisciOperazione() {
 		int operazione = in.nextInt();
-		while (operazione < 0 && operazione > 36) {
-			System.out.println("Hai inserito un operazione sbagliato, inserisci un numero tra quelli disponibili");
+		while (operazione < 0 || operazione > 36) {
+			System.out.println("Hai inserito un'operazione sbagliata, inserisci un numero tra quelli disponibili");
 			operazione = in.nextInt();
 		}
 		return operazione;
@@ -233,13 +241,20 @@ public class Aritmetica {
 				System.out.println(parteInteraRadiceQuadrata(x));
 				break;
 			case 35:
-				if (controllaMultiplo33(x))
-					System.out.println(multiplo33(x));
+				if (controllaMultiplo(x, y))
+					System.out.println(multiplo(x, y));
 				else
-					System.out.println(x + " non \u00E8 un multiplo di 33");
+					System.out.println(x + " non \u00E8 un multiplo di " + y);
 				break;
 			case 36:
-				
+				if (x == 0)
+					System.out.println("Non esiste il logaritmo di 0");	
+				else if (y == 0)
+					System.out.println("Non esiste il logaritmo in base 0");
+				else if (y == 1)
+					System.out.println("Non esiste il logaritmo in base 1");			
+				else
+					System.out.println(parteInteraLogaritmo(x, y));
 				break;
 		}
 	}
@@ -522,8 +537,8 @@ public class Aritmetica {
 	
 	/*
 	7.3.1
-	Metodo controllaQuadratoPerfetto e radiceQuadrataPerfetta. Faccio anche il metodo controlla 
-	quadrato perfetto per rendere anche la semplice radice quadrata una funzione totale.
+	Metodo controllaQuadratoPerfetto e radiceQuadrataPerfetta. Faccio anche il metodo di 
+	controllo per rendere anche la semplice radice quadrata una funzione totale.
 	*/
 	public static boolean controllaQuadratoPerfetto(int x) {
 		int y = 0;
@@ -554,21 +569,35 @@ public class Aritmetica {
 	
 	/*
 	7.3.3
-	Metodo controllaMultiplo33 e multiplo33
+	Metodo controllaMultiplo e multiplo. Ho indrodotto una seconda variabile in input in modo
+	da generalizzare il multiplo, che quindi non deve essere per forza 33. 
 	*/
-	public static boolean controllaMultiplo33(int x) {
-		int y = 1;
-		while (differenzaRelativaRicorsiva(x, prodottoRicorsivo(33, y)) != 0)
-			y = successore(y);
-		if (x == prodottoRicorsivo(33, y))
+	public static boolean controllaMultiplo(int x, int y) {
+		int z = 1;
+		while (differenzaRelativaRicorsiva(x, prodottoRicorsivo(y, z)) != 0)
+			z = successore(z);
+		if (x == prodottoRicorsivo(y, z))
 			return true;
 		return false;
 	}
 	
-	public static int multiplo33(int x) {
-		int y = 1;
-		while (differenzaRelativaRicorsiva(x, prodottoRicorsivo(33, y)) != 0)
-			y = successore(y);
-		return y;
+	public static int multiplo(int x, int y) {
+		int z = 1;
+		while (differenzaRelativaRicorsiva(x, prodottoRicorsivo(y, z)) != 0)
+			z = successore(z);
+		return z;
+	}
+	
+	/*
+	7.3.4
+	Metodo parteInteraLogaritmo. Ho deciso di usare anche una seconda variabile in modo da
+	poter decidere al momento la base del logaritmo. Bisogna quindi limitare anche la base 
+	del logaritmo che dovra essere >= 2. 
+	*/
+	public static int parteInteraLogaritmo(int x, int y) {
+		int z = 0;
+		while (differenzaRelativaRicorsiva(successore(x), esponenzialeRicorsivo(y, z + 1)) != 0)
+			z = successore(z);
+		return z;
 	}
 }
