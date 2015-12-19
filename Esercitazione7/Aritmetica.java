@@ -228,7 +228,7 @@ public class Aritmetica {
 				System.out.println(esponenzialeRicorsivo(x, y));
 				break;
 			case 32:
-				System.out.println(differenzaAssolutaRelativa(x, y));
+				System.out.println(differenzaAssolutaRicorsiva(x, y));
 				break;
 			case 33:
 				if (controllaQuadratoPerfetto(x))
@@ -509,7 +509,7 @@ public class Aritmetica {
 	Differenza Assoluta Riorsiva. Avevo già fatto lo stesso metodo in qualche esercitazione
 	fa usando la minimalizzazione, ma lo rifaccio usando i nuovi metodi ricorsivi appena creati.
 	*/
-	public static int differenzaAssolutaRelativa(int x, int y) {
+	public static int differenzaAssolutaRicorsiva(int x, int y) {
 		return sommaRicorsiva(differenzaRelativaRicorsiva(x, y), differenzaRelativaRicorsiva(y, x));
 	}
 	
