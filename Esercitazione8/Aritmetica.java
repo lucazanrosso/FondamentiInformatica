@@ -300,7 +300,7 @@ public class Aritmetica {
 					System.out.println(x + " non \u00E8 minore o uguale di " + y);
 				break;
 			case 44:
-				if (minore(x, y))
+				if (minoreMcCarthy(x, y))
 					System.out.println(x + " \u00E8 minore di " + y);
 				else
 					System.out.println(x + " non \u00E8 minore di " + y);
@@ -610,6 +610,7 @@ public class Aritmetica {
 		return z;
 	}
 	
+	
 	/*
 	8.1
 	Metodi funzioneAckermannMcCarthy e funzioneAckermannIterativa
@@ -735,29 +736,29 @@ public class Aritmetica {
 		return or(x == 0, (not(y == 0) && minoreUgualeMcCarthy(predecessore(x), predecessore(y))));
 	}
 
-	public static boolean minore(int x, int y) {
+	public static boolean minoreMcCarthy(int x, int y) {
 		return and(minoreUgualeMcCarthy(x, y), not(x == y));
 	}
 
 	public static int quozienteMcCarthy(int x, int y) {
-		if (minore(x, y))
+		if (minoreMcCarthy(x, y))
 			return 0;
 		return successore(quozienteMcCarthy(differenzaRelativaRicorsiva(x, y), y));
 	}
 	
 	public static int restoMcCarthy(int x, int y) {
-		if (minore(x, y))
+		if (minoreMcCarthy(x, y))
 			return x;
 		return restoMcCarthy(differenzaRelativaRicorsiva(x, y), y);
 	}
 	
 	public static boolean divisibileMcCarthy(int x, int y) {
-		return or(x == 0, (not(minore(x, y)) && divisibileMcCarthy(differenzaRelativaMcCarthy(x, y), y)));
+		return or(x == 0, (not(minoreMcCarthy(x, y)) && divisibileMcCarthy(differenzaRelativaMcCarthy(x, y), y)));
 	}
 	
 	/*
 	8.2.3 e 8.2.4
-	Tutti i metodi che sono richiesti sono già stati fatti nell'esercitazione 4 e 7.
+	Tutti i metodi richiesti sono già stati fatti nell'esercitazione 4 e 7.
 	*/
 	
 	/*
