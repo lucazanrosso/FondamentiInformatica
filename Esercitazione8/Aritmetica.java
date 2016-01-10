@@ -4,7 +4,8 @@ import java.util.Arrays;
 public class Aritmetica {
 	
 	public static Scanner in;
-	public static final int OPERAZIONI = 41;
+	public static final int OPERAZIONI = 50;
+	public static final int OPERAZIONI_SOLO_X = 16;
 	public static String[] operazioni;
 	public static int[] operazioniSoloX;
 	
@@ -80,14 +81,23 @@ public class Aritmetica {
 		operazioni[34] = "Parte Intera Radice Quadrata";
 		operazioni[35] = "Multiplo";
 		operazioni[36] = "Parte Intera Logaritmo";
-		operazioni[37] = "Minore o Uguale";
-		operazioni[38] = "Minore";
-		operazioni[39] = "Quoziente Ricorsivo";
-		operazioni[40] = "Resto Ricorsivo";
+		operazioni[37] = "Funzione di Ackermann McCarthy";
+		operazioni[38] = "Funzione di Ackermann Iterativa";
+		operazioni[39] = "Predecessore McCarthy";
+		operazioni[40] = "Somma McCarthy";
+		operazioni[41] = "Prodotto McCarthy";
+		operazioni[42] = "Differenza McCarthy";
+		operazioni[43] = "Minore o Uguale McCarthy";
+		operazioni[44] = "Minore McCarthy";
+		operazioni[45] = "Quoziente McCarthy";
+		operazioni[46] = "Resto McCarthy";
+		operazioni[47] = "Divisibile McCarthy";
+		operazioni[48] = "Sequenza Fibonacci Ricorsiva";
+		operazioni[49] = "Sequenza Fibonacci Iterativa";
 	}
 	
 	public static void inizializzaOperazioniSoloX() {
-		operazioniSoloX = new int[13];
+		operazioniSoloX = new int[OPERAZIONI_SOLO_X];
 		operazioniSoloX[0] = 0;
 		operazioniSoloX[1] = 1;
 		operazioniSoloX[2] = 2;
@@ -100,7 +110,10 @@ public class Aritmetica {
 		operazioniSoloX[9] = 26;
 		operazioniSoloX[10] = 27;
 		operazioniSoloX[11] = 33;
-		operazioniSoloX[12] = 34;		
+		operazioniSoloX[12] = 34;
+		operazioniSoloX[13] = 39;
+		operazioniSoloX[13] = 48;
+		operazioniSoloX[13] = 49;
 	}
 	
 	public static int inserisciNumero() {
@@ -155,7 +168,7 @@ public class Aritmetica {
 				if (y == 0)
 					System.out.println("Impossibile dividere per 0");
 				else
-				System.out.println(divisione(x, y, false));
+					System.out.println(divisione(x, y, false));
 				break;
 			case 9:
 				if (x == 0 && y == 0)
@@ -247,12 +260,10 @@ public class Aritmetica {
 			case 35:
 				if (y == 0)
 					System.out.println("Non esiste un numero multiplo di 0");
-				else {
-					if (controllaMultiplo(x, y))
-						System.out.println(multiplo(x, y));
-					else
-						System.out.println(x + " non \u00E8 un multiplo di " + y);
-				}
+				else if (controllaMultiplo(x, y))
+					System.out.println(x + " \u00E8 un multiplo di " + y);
+				else
+					System.out.println(x + " non \u00E8 un multiplo di " + y);
 				break;
 			case 36:
 				if (x == 0)
@@ -265,16 +276,60 @@ public class Aritmetica {
 					System.out.println(parteInteraLogaritmo(x, y));
 				break;
 			case 37:
-				System.out.println(minoreUgualeRicorsivo(x, y));
+				System.out.println(funzioneAckermannMcCarthy(x, y));
 				break;
 			case 38:
-				System.out.println(minore(x, y));
+				System.out.println(funzioneAckermannIterativa(x, y));
 				break;
 			case 39:
-				System.out.println(quozienteRicorsivo(x, y));
+				System.out.println(predecessoreMcCarthy(x));
 				break;
 			case 40:
-				System.out.println(restoRicorsivo(x, y));
+				System.out.println(sommaMcCarthy(x, y));
+				break;
+			case 41:
+				System.out.println(prodottoMcCarthy(x, y));
+				break;
+			case 42:
+				System.out.println(differenzaRelativaMcCarthy(x, y));
+				break;	
+			case 43:
+				if (minoreUgualeMcCarthy(x, y))
+					System.out.println(x + " \u00E8 minore o uguale di " + y);
+				else
+					System.out.println(x + " non \u00E8 minore o uguale di " + y);
+				break;
+			case 44:
+				if (minore(x, y))
+					System.out.println(x + " \u00E8 minore di " + y);
+				else
+					System.out.println(x + " non \u00E8 minore di " + y);
+				break;
+			case 45:
+				if (y == 0)
+					System.out.println("Impossibile dividere per 0");
+				else
+					System.out.println(quozienteMcCarthy(x, y));
+				break;
+			case 46:
+				if (y == 0)
+					System.out.println("Impossibile dividere per 0");
+				else
+					System.out.println(restoMcCarthy(x, y));
+				break;
+			case 47:
+				if (y == 0)
+					System.out.println("Non esiste un numero divisibile per 0");
+				else if (divisibileMcCarthy(x, y))
+					System.out.println(x + " \u00E8 divisibile per " + y);
+				else
+					System.out.println(x + " non \u00E8 divisibile per " + y);
+				break;
+			case 48:
+				System.out.println(sequenzaFibonacciRicorsiva(x));
+				break;
+			case 49:
+				System.out.println(sequenzaFibonacciIterativa(x));
 				break;
 		}
 	}
@@ -557,7 +612,36 @@ public class Aritmetica {
 	
 	/*
 	8.1
+	Metodi funzioneAckermannMcCarthy e funzioneAckermannIterativa
 	*/
+	public static int funzioneAckermannMcCarthy(int x, int y) {
+		if (x == 0)
+			return successore(y);
+		else if (y == 0)
+			return funzioneAckermannMcCarthy(predecessore(x), 1);
+		else
+			return funzioneAckermannMcCarthy(predecessore(x), funzioneAckermannMcCarthy(x, predecessore(y)));
+	}
+	
+	public static int funzioneAckermannIterativa(int x, int y) {
+		int[] z = {0, x, y, 0};
+		int i = 2;
+		if (i == 1)
+			return z[1];
+		else if (z[predecessore(i)] == 0) {
+			z[predecessore(i)] = successore(z[i]);
+			i = predecessore(i);
+		} else if (z[i] == 0) {
+			z[predecessore(i)] = predecessore(z[predecessore(i)]);
+			z[i] = 1;
+		} else {
+			z[successore(i)] = predecessore(z[i]);
+			z[i] = z[predecessore(i)];
+			z[predecessore(i)] = predecessore(z[predecessore(i)]);
+			i = successore(i);
+		}
+		return 0;
+	}
 	
 	/*
 	8.2.1
@@ -565,6 +649,11 @@ public class Aritmetica {
 	I metodi predecessore, somma, prodotto e differenza sono già stati definiti con la
 	logica ricorsiva con il formalismo di Kleene (se non sbaglio), ma li riscrivo usando
 	il formalismo di McCarthy.
+	Ho notato che il predecessore non funziona se y >= x. Si potrebbe correggere ponendo 
+	y = 0 se y >= x, ma dal momento che deve essere usato solo il metodo con un solo parametro
+	non lo faccio.
+	Per quanto riguarda la differenza, il programma va in loop se se x >= y, perciò
+	aggiungo un controllo per evitare che questo accada.
 	*/
 	
 	public static int predecessoreMcCarthy(int x) {
@@ -572,9 +661,9 @@ public class Aritmetica {
 	}
 	
 	public static int predecessoreMcCarthy(int x, int y) {
-		if (successore(x) == y)
-			return x;
-		return predecessoreMcCarthy(y, successore(x));
+		if (successore(y) == x)
+			return y;
+		return predecessoreMcCarthy(x, successore(y));
 	}
 	
 	public static int sommaMcCarthy(int x, int y) {
@@ -588,8 +677,10 @@ public class Aritmetica {
 			return 0;
 		return sommaMcCarthy(x, prodottoMcCarthy(x, predecessoreMcCarthy(y)));
 	}
-	// y maggiore di x
+	
 	public static int differenzaRelativaMcCarthy(int x, int y) {
+		if (x < y)
+			return 0;
 		if (y == 0)
 			return x;
 		return differenzaRelativaMcCarthy(predecessoreMcCarthy(x), predecessoreMcCarthy(y));
@@ -601,12 +692,12 @@ public class Aritmetica {
 	creati usando il formalismo di McCarthy. Anche se i nomi not, and, or sono già stati usati
 	per altri metodi, java non genera errori, perché il tipo di ritorno e i parametri 
 	in questo caso sono di tipo boolean, quindi si tratta di overlaod.
-	Faccio un appunto importante per il metodo minoreUguale. Se si usa il metodo and come
-	descritto nell'esercitazione, il programma andrà sempre in loop. Questo perché il metodo
-	and (e anche or) non implementa la logica dello short circuit, cioè, appena viene trovato
-	un valore false (true nel caso dell'or) vengono saltati tutti gli altri controlli, perché
-	non necessari. In questo caso al metodo and vengono passati sempre tutti i valori, anche
-	nel caso in cui il primo valore sia false, perciò, in un metodo ricorsivo questo genera 
+	Faccio un appunto importante per il metodo minoreUguale e divisibile. Se si usa il metodo 
+	and come descritto nell'esercitazione, il programma andrà sempre in loop. Questo perché il 
+	metodo and (e anche or) non implementa la logica dello short circuit, cioè, appena viene 
+	trovato un valore false (true nel caso dell'or) vengono saltati tutti gli altri controlli, 
+	perché non necessari. In questo caso al metodo and vengono passati sempre tutti i valori,
+	anche nel caso in cui il primo valore sia false, perciò, in un metodo ricorsivo questo genera 
 	un loop.
 	Ci sono poi alcuni errori nelle descrizioni dei metodi:
 	1) Nella descrizione del metodo rem (che io ho chiamato restoRicorsivo), dove c'è 
@@ -639,29 +730,29 @@ public class Aritmetica {
 		return segnatura(y);
 	}*/
 	
-	public static boolean minoreUgualeRicorsivo(int x, int y) {
+	public static boolean minoreUgualeMcCarthy(int x, int y) {
 		//return or(x == 0, and(not(y == 0), (minoreUguale(predecessore(x), predecessore(y)))));
-		return or(x == 0, (not(y == 0) && (minoreUgualeRicorsivo(predecessore(x), predecessore(y)))));
+		return or(x == 0, (not(y == 0) && minoreUgualeMcCarthy(predecessore(x), predecessore(y))));
 	}
 
 	public static boolean minore(int x, int y) {
-		return and(minoreUgualeRicorsivo(x, y), not(x == y));
+		return and(minoreUgualeMcCarthy(x, y), not(x == y));
 	}
 
-	public static int quozienteRicorsivo(int x, int y) {
+	public static int quozienteMcCarthy(int x, int y) {
 		if (minore(x, y))
 			return 0;
-		return successore(quozienteRicorsivo(differenzaRelativaRicorsiva(x, y), y));
+		return successore(quozienteMcCarthy(differenzaRelativaRicorsiva(x, y), y));
 	}
 	
-	public static int restoRicorsivo(int x, int y) {
+	public static int restoMcCarthy(int x, int y) {
 		if (minore(x, y))
 			return x;
-		return restoRicorsivo(differenzaRelativaRicorsiva(x, y), y);
+		return restoMcCarthy(differenzaRelativaRicorsiva(x, y), y);
 	}
 	
-	public static boolean divisibileRicorsivo(int x, int y) {
-		return or(x == 0, and(not(minore(x, y)), divisibileRicorsivo(differenzaRelativaMcCarthy(x, y), y)));
+	public static boolean divisibileMcCarthy(int x, int y) {
+		return or(x == 0, (not(minore(x, y)) && divisibileMcCarthy(differenzaRelativaMcCarthy(x, y), y)));
 	}
 	
 	/*
@@ -671,5 +762,25 @@ public class Aritmetica {
 	
 	/*
 	8.3
+	Metodi sequenzaFibonacciRicorsiva e sequenzaFibonacciIterativa
 	*/
+	public static int sequenzaFibonacciRicorsiva(int x) {
+		if (x <= 2)
+			return 1;
+		return somma(sequenzaFibonacciRicorsiva(predecessore(x)), sequenzaFibonacciRicorsiva(predecessore(predecessore(x))));
+	}
+	
+	public static int sequenzaFibonacciIterativa(int x) {
+		if (x <= 2)
+			return 1;
+		int a = 1;
+		int b = 1;
+		int c = 1;
+		for (int i = 3; i <= x; i++) {
+			c = somma(a, b);
+			a = b;
+			b = c;
+		}
+		return c;		
+	}
 }
