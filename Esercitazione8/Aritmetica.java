@@ -327,9 +327,11 @@ public class Aritmetica {
 				break;
 			case 48:
 				System.out.println(sequenzaFibonacciRicorsiva(x));
+				System.out.println(contaFibRic);
 				break;
 			case 49:
 				System.out.println(sequenzaFibonacciIterativa(x));
+				System.out.println(contaFibIte);
 				break;
 		}
 	}
@@ -613,7 +615,9 @@ public class Aritmetica {
 	
 	/*
 	8.1
-	Metodi funzioneAckermannMcCarthy e funzioneAckermannIterativa
+	Metodi funzioneAckermannMcCarthy e funzioneAckermannIterativa. Quando si testano è meglio 
+	usare numeri piccoli, altrimenti il programma va in loop o restituisce l'eccezione 
+	ArrayIndexOutOfBoundsException (nel caso del metodo iterativo).
 	*/
 	public static int funzioneAckermannMcCarthy(int x, int y) {
 		if (x == 0)
@@ -625,7 +629,7 @@ public class Aritmetica {
 	}
 	
 	public static int funzioneAckermannIterativa(int x, int y) {
-		int[] z = new int[1000];
+		int[] z = new int[1024];
 		z[1] = x;
 		z[2] = y;
 		int i = 2;
@@ -648,10 +652,9 @@ public class Aritmetica {
 	
 	/*
 	8.2.1
-	Metodi sommaMcCarthy, sommaMcCarthy, sommaMcCarthy,
-	I metodi predecessore, somma, prodotto e differenza sono già stati definiti con la
-	logica ricorsiva con il formalismo di Kleene (se non sbaglio), ma li riscrivo usando
-	il formalismo di McCarthy.
+	Metodi predecessore, somma, prodotto, differenzaRelativa.
+	Questi metodi sono già stati definiti con la logica ricorsiva usando il formalismo 
+	di Kleene (se non sbaglio), ora bisogna usare il formalismo di McCarthy.
 	Ho notato che il predecessore non funziona se y >= x. Si potrebbe correggere ponendo 
 	y = 0 se y >= x, ma dal momento che deve essere usato solo il metodo con un solo parametro
 	non lo faccio.
@@ -691,20 +694,20 @@ public class Aritmetica {
 	
 	/*
 	8.2.2
-	Metodi not, and, or, implica, minoreUguale, minore, quoziente, resto, divisibile
+	Metodi not, and, or, implica, minoreUguale, minore, quoziente, resto, divisibile,
 	creati usando il formalismo di McCarthy. Anche se i nomi not, and, or sono già stati usati
-	per altri metodi, java non genera errori, perché il tipo di ritorno e i parametri 
-	in questo caso sono di tipo boolean, quindi si tratta di overlaod.
+	per altri metodi, java non genera errori, perché i parametri in questo caso sono 
+	di tipo boolean, quindi si tratta di overlaod.
 	Faccio un appunto importante per il metodo minoreUguale e divisibile. Se si usa il metodo 
 	and come descritto nell'esercitazione, il programma andrà sempre in loop. Questo perché il 
-	metodo and (e anche or) non implementa la logica dello short circuit, cioè, appena viene 
-	trovato un valore false (true nel caso dell'or) vengono saltati tutti gli altri controlli, 
+	metodo and non implementa la logica dello short circuit. Con lo short circuit, infatti, 
+	appena viene trovato un valore false vengono saltati tutti gli altri controlli, 
 	perché non necessari. In questo caso al metodo and vengono passati sempre tutti i valori,
-	anche nel caso in cui il primo valore sia false, perciò, in un metodo ricorsivo questo genera 
-	un loop.
+	anche nel caso in cui il primo valore sia false, perciò, usando la ricorsione in questa
+	maniera si andrà sempre un loop. Lo stesso discorso vale per il metodo or e implica.
 	Ci sono poi alcuni errori nelle descrizioni dei metodi:
-	1) Nella descrizione del metodo rem (che io ho chiamato restoRicorsivo), dove c'è 
-	lo / della divisione, in realtà bisogna mettere una virgola.
+	1) Nella descrizione del metodo rem (che io ho chiamato restoRicorsivo), la parte 
+	"rem (m − n) / n" va sostituita con "rem((m - n), n)".
 	2) nella descrizione del metodo | (che io ho chiamato divisibieRicorsivo), 
 	il metodo m >= n si ottiene nagando il metodo m < n, non m <= n.
 	*/
@@ -726,12 +729,11 @@ public class Aritmetica {
 		return y;
 	}
 	
-/*
-	public static boolean implicaMcCarthy (boolean x, boolean y) {
-		if (segnatura(x) == 1)
-			return 1;
-		return segnatura(y);
-	}*/
+	public static boolean implica (boolean x, boolean y) {
+		if (x)
+			return y;
+		return true;
+	}
 	
 	public static boolean minoreUgualeMcCarthy(int x, int y) {
 		//return or(x == 0, and(not(y == 0), (minoreUguale(predecessore(x), predecessore(y)))));
@@ -760,20 +762,30 @@ public class Aritmetica {
 	
 	/*
 	8.2.3 e 8.2.4
-	Tutti i metodi richiesti sono già stati fatti nell'esercitazione 4 e 7.
+	Tutti i metodi richiesti sono già stati fatti nell'esercitazione 4, e sono presenti 
+	anche sopra.
 	*/
 	
 	/*
 	8.3
-	Metodi sequenzaFibonacciRicorsiva e sequenzaFibonacciIterativa
+	Metodi sequenzaFibonacciRicorsiva e sequenzaFibonacciIterativa.
+	Testando la sequenza di Fibonacci, ad esempio, con il numero nove, 
+	si ottengono 67 chiamate per il metodo sequenzaFibonacciRicorsiva e 7 iterazioni
+	per il metodo sequenzaFibonacciIterativa. La crescita delle chiamate del metodo
+	sequenzaFibonacciRicorsiva sarà esponenziale rispetto al numero scelto, mentre il numero
+	di iterazioni del metodo sequenzaFibonacciIterativa sarà sempre il numero scelto - 2.
 	*/
+	public static int contaFibRic = 0;
 	public static int sequenzaFibonacciRicorsiva(int x) {
+		contaFibRic++;
 		if (x <= 2)
 			return 1;
 		return somma(sequenzaFibonacciRicorsiva(predecessore(x)), sequenzaFibonacciRicorsiva(predecessore(predecessore(x))));
 	}
 	
+	public static int contaFibIte = 0;
 	public static int sequenzaFibonacciIterativa(int x) {
+		int j = 0;
 		if (x <= 2)
 			return 1;
 		int a = 1;
@@ -783,6 +795,7 @@ public class Aritmetica {
 			c = somma(a, b);
 			a = b;
 			b = c;
+			contaFibIte++;
 		}
 		return c;		
 	}
