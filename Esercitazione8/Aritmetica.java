@@ -7,7 +7,7 @@ public class Aritmetica {
 	public static final int OPERAZIONI = 50;
 	public static final int OPERAZIONI_SOLO_X = 16;
 	public static String[] operazioni;
-	public static int[] operazioniSoloX;
+	public static Integer[] operazioniSoloX;
 	
 	public static void main (String[] args) {
 		inizializzaOperazioni();
@@ -32,10 +32,9 @@ public class Aritmetica {
 		
 		eseguiOperazione(operazione, x, y);
 		
-		
 		//IL FOR SERVE PER TESTARE TUTTI I METODI IN POCHE RIGHE
-		/*int x = 4;
-		int y = 3;
+		/*int x = 3;
+		int y = 5;
 		for (int i = 0; i < operazioni.length; i++) {
 			System.out.println("\n" + operazioni[i]);
 			eseguiOperazione(i, x, y);
@@ -97,7 +96,7 @@ public class Aritmetica {
 	}
 	
 	public static void inizializzaOperazioniSoloX() {
-		operazioniSoloX = new int[OPERAZIONI_SOLO_X];
+		operazioniSoloX = new Integer[OPERAZIONI_SOLO_X];
 		operazioniSoloX[0] = 0;
 		operazioniSoloX[1] = 1;
 		operazioniSoloX[2] = 2;
@@ -112,8 +111,8 @@ public class Aritmetica {
 		operazioniSoloX[11] = 33;
 		operazioniSoloX[12] = 34;
 		operazioniSoloX[13] = 39;
-		operazioniSoloX[13] = 48;
-		operazioniSoloX[13] = 49;
+		operazioniSoloX[14] = 48;
+		operazioniSoloX[15] = 49;
 	}
 	
 	public static int inserisciNumero() {
@@ -327,11 +326,11 @@ public class Aritmetica {
 				break;
 			case 48:
 				System.out.println(sequenzaFibonacciRicorsiva(x));
-				System.out.println(contaFibRic);
+				System.out.println("Iterazioni " + contaFibRic);
 				break;
 			case 49:
 				System.out.println(sequenzaFibonacciIterativa(x));
-				System.out.println(contaFibIte);
+				System.out.println("Iterazioni " + contaFibIte);
 				break;
 		}
 	}
