@@ -625,23 +625,25 @@ public class Aritmetica {
 	}
 	
 	public static int funzioneAckermannIterativa(int x, int y) {
-		int[] z = {0, x, y, 0};
+		int[] z = new int[1000];
+		z[1] = x;
+		z[2] = y;
 		int i = 2;
-		if (i == 1)
-			return z[1];
-		else if (z[predecessore(i)] == 0) {
-			z[predecessore(i)] = successore(z[i]);
-			i = predecessore(i);
-		} else if (z[i] == 0) {
-			z[predecessore(i)] = predecessore(z[predecessore(i)]);
-			z[i] = 1;
-		} else {
-			z[successore(i)] = predecessore(z[i]);
-			z[i] = z[predecessore(i)];
-			z[predecessore(i)] = predecessore(z[predecessore(i)]);
-			i = successore(i);
+		while (i != 1) {				
+			if (z[predecessore(i)] == 0) {
+				z[predecessore(i)] = successore(z[i]);
+				i = predecessore(i);
+			} else if (z[i] == 0) {
+				z[predecessore(i)] = predecessore(z[predecessore(i)]);
+				z[i] = 1;
+			} else {
+				z[successore(i)] = predecessore(z[i]);
+				z[i] = z[predecessore(i)];
+				z[predecessore(i)] = predecessore(z[predecessore(i)]);
+				i = successore(i);
+			}
 		}
-		return 0;
+		return z[1];
 	}
 	
 	/*
