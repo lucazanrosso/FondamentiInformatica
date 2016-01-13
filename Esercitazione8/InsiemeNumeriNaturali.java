@@ -18,6 +18,11 @@ public class InsiemeNumeriNaturali {
 		this.insieme = insieme;
 	}
 	
+	/*
+	8.4.1
+	Operazioni di base.
+	*/
+	
 	public int inserisci(int numero) {
 		this.insieme[numero] = true;
 		return numero;
@@ -40,40 +45,80 @@ public class InsiemeNumeriNaturali {
 		return this.insieme[numero];
 	}
 	
-	public InsiemeNumeriNaturali unione(InsiemeNumeriNaturali insieme2) {
-		InsiemeNumeriNaturali insiemeUnione = new InsiemeNumeriNaturali();
-		boolean[] i1 = this.insieme;
-		boolean[] i2 = insieme2.get();
-		if (i2.length > i1.length) {
-			boolean[] temp = i1;
-			i1 = i2;
-			i2 = temp;
-		}		
-		insiemeUnione.set(i1);
-		for (int i = 0; i < i2.length; i++) {
-			if (i2[i])
+	/*
+	8.4.2
+	Metodi unione, intersezione e complemento. Sono metodi un po' complessi, che forse
+	si possono semplificare. Sono statici perché in questa maniera se voglio, ad esempio,
+	unire due insiemi, non modifico permanentemente i due insiemi, ma prendo solamente
+	i loro valori e ne creo un terzo (che corrisponderà all'unione dei due).
+	I metodi inoltre sono complicati perché ho previsto l'uso di insiemi di dimensioni diverse.
+	Se tutti gli insiemi fossero creati con la stessa dimensione allora i metodi si potrebbero
+	semplificare, ma nel caso di insiemi di dimensioni diverse i metodi semplificati
+	porterebbero ad un ArrayOutOfBoudsException.
+	NOTA PERSONALE
+	È interessante l'uso del metodo set all'interno del metodo statico unione.
+	Se viene usato, infatti, anche l'oggetto con lunghezza di array maggiore tra i due
+	oggetti passati in input assumerà gli stessi valori dell'array dell'oggetto insiemeUnione.
+	Bisogna quindi fare due cicli.
+	*/
+	public static InsiemeNumeriNaturali unione(InsiemeNumeriNaturali i1, InsiemeNumeriNaturali i2) {
+		boolean[] insieme1 = i1.get();
+		boolean[] insieme2 = i2.get();
+		int length;
+		if (insieme2.length > insieme1.length)
+			length = insieme2.length;
+		else
+			length = insieme1.length;
+		InsiemeNumeriNaturali insiemeUnione = new InsiemeNumeriNaturali(length);		
+		//insiemeUnione.set(insieme1);
+		for (int i = 0; i < insieme1.length; i++) {
+			if (insieme1[i])
+				insiemeUnione.inserisci(i);
+		}
+		for (int i = 0; i < insieme2.length; i++) {
+			if (insieme2[i])
 				insiemeUnione.inserisci(i);
 		}
 		return insiemeUnione;
 	}
 	
-	/*public void intersezione(int[] insieme2) {
-		boolean[] insieme2 = insiemeUnione.get();
-		if (insieme2.length < this.insieme.length) {
-			boolean[] temp = this.insieme;
-			this.insieme = insieme2;
-			insieme2 = temp;
-		}			
-		for (int i = 0; i < insieme2.length; i++) {
-			if (insieme[i] || insieme2[i])
-				this.insieme[i] = false;
+	public static InsiemeNumeriNaturali intersezione(InsiemeNumeriNaturali i1, InsiemeNumeriNaturali i2) {
+		boolean[] insieme1 = i1.get();
+		boolean[] insieme2 = i2.get();
+		int length;
+		if (insieme2.length < insieme1.length)
+			length = insieme2.length;
+		else
+			length = insieme1.length;
+		InsiemeNumeriNaturali insiemeIntersezione = new InsiemeNumeriNaturali(length);
+		for (int i = 0; i < length; i++) {
+			if (insieme1[i] && insieme2[i])
+				insiemeIntersezione.inserisci(i);
 		}
-	}*/
-	
-	public void complemento(int[] insieme2) {
-		
+		return insiemeIntersezione;
 	}
 	
+	public static InsiemeNumeriNaturali complemento(InsiemeNumeriNaturali i1, InsiemeNumeriNaturali i2) {
+		boolean[] insieme1 = i1.get();
+		boolean[] insieme2 = i2.get();
+		int length;
+		if (insieme2.length < insieme1.length)
+			length = insieme2.length;
+		else
+			length = insieme1.length;
+		InsiemeNumeriNaturali insiemeComplemento = new InsiemeNumeriNaturali(insieme2.length);
+		for (int i = 0; i < insieme2.length; i++) {
+			if (insieme2[i])
+				insiemeComplemento.inserisci(i);
+		}
+		for (int i = 0; i < length; i++) {
+			if (insieme1[i])
+				insiemeComplemento.cancella(i);
+		}
+		return insiemeComplemento;
+	}
+	
+	// Metodo stampa che serve per stampare gli elementi dell'insieme sepati da virgole.
 	public String stampa() {	
 		String elementi = null;
 		boolean primoElemento = true;
