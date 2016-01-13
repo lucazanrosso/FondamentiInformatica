@@ -47,14 +47,15 @@ public class InsiemeNumeriNaturali {
 	
 	/*
 	8.4.2
-	Metodi unione, intersezione e complemento. Sono metodi un po' complessi, che forse
-	si possono semplificare. Sono statici perché in questa maniera se voglio, ad esempio,
+	Metodi unione, intersezione e complemento. Sono metodi un po' complessi, e sono 
+	statici perché in questa maniera se voglio, ad esempio,
 	unire due insiemi, non modifico permanentemente i due insiemi, ma prendo solamente
 	i loro valori e ne creo un terzo (che corrisponderà all'unione dei due).
 	I metodi inoltre sono complicati perché ho previsto l'uso di insiemi di dimensioni diverse.
 	Se tutti gli insiemi fossero creati con la stessa dimensione allora i metodi si potrebbero
-	semplificare, ma nel caso di insiemi di dimensioni diverse i metodi semplificati
-	porterebbero ad un ArrayOutOfBoudsException.
+	semplificare, ma, nel caso di insiemi di dimensioni diverse, i metodi semplificati
+	porterebbero ad un ArrayOutOfBoudsException. In ogni caso in basso si trovano anche i
+	metodi semplici commentati che prevedono insiemi della stessa dimensione.
 	NOTA PERSONALE
 	È interessante l'uso del metodo set all'interno del metodo statico unione.
 	Se viene usato, infatti, anche l'oggetto con lunghezza di array maggiore tra i due
@@ -117,6 +118,41 @@ public class InsiemeNumeriNaturali {
 		}
 		return insiemeComplemento;
 	}
+	
+	/*
+	public static InsiemeNumeriNaturali unione(InsiemeNumeriNaturali i1, InsiemeNumeriNaturali i2) {
+		boolean[] insieme1 = i1.get();
+		boolean[] insieme2 = i2.get();
+		InsiemeNumeriNaturali insiemeUnione = new InsiemeNumeriNaturali(insieme1.length);		
+		for (int i = 0; i < insieme1.length; i++) {
+			if (insieme1[i] || insieme2[i])
+				insiemeUnione.inserisci(i);
+		}
+		return insiemeUnione;
+	}
+	
+	public static InsiemeNumeriNaturali intersezione(InsiemeNumeriNaturali i1, InsiemeNumeriNaturali i2) {
+		boolean[] insieme1 = i1.get();
+		boolean[] insieme2 = i2.get();
+		InsiemeNumeriNaturali insiemeIntersezione = new InsiemeNumeriNaturali(insieme1.length);
+		for (int i = 0; i < insieme1.length; i++) {
+			if (insieme1[i] && insieme2[i])
+				insiemeIntersezione.inserisci(i);
+		}
+		return insiemeIntersezione;
+	}
+	
+	public static InsiemeNumeriNaturali complemento(InsiemeNumeriNaturali i1, InsiemeNumeriNaturali i2) {
+		boolean[] insieme1 = i1.get();
+		boolean[] insieme2 = i2.get();
+		InsiemeNumeriNaturali insiemeComplemento = new InsiemeNumeriNaturali(insieme1.length);
+		for (int i = 0; i < insieme1.length; i++) {
+			if (insieme2[i] && !insieme1[i])
+				insiemeComplemento.inserisci(i);
+		}
+		return insiemeComplemento;
+	}
+	*/
 	
 	// Metodo stampa che serve per stampare gli elementi dell'insieme sepati da virgole.
 	public String stampa() {	
