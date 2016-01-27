@@ -68,7 +68,7 @@ public class StringaTest {
 		//insertionSort();
 		//bubbleSort();
 		mergeSort();
-		System.out.println("\nArray strighe selectionSort: ");
+		System.out.println("\nArray strighe ordinato: ");
 		print(stringhe);
 	}
 	
@@ -179,8 +179,8 @@ public class StringaTest {
 	/*
 	9.2.3
 	Metodo bubbleSort decrescente
-	Anche se questa volta non è scritto, decido io di usare il while perché così l'argoritmo è
-	più performante.
+	Ho deciso di usare un'implementazione diversa rispetto a quella fatta dal prof. Canazza,
+	perché mi sembra più chiara e performante.
 	*/
 	public static void bubbleSort() {
 		boolean scambio = true;
@@ -202,7 +202,6 @@ public class StringaTest {
 	Metodo mergeSort decrescente
 	In basso ho fatto anche un merge sort crescente dove non serve passare in input degli array.
 	*/
-	
 	public static void mergeSort() {
 		mergeSort(stringhe, stringhe.length);
 	}

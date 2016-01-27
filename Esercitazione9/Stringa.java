@@ -16,9 +16,7 @@ public class Stringa {
 	*/
 	private char[] stringa;
 	
-	public Stringa() {
-		this.stringa = new char[0];
-	}
+	public Stringa() {}
 	
 	public Stringa(char... chars) {
 		this.stringa = chars;
@@ -216,6 +214,8 @@ public class Stringa {
 	
 	// Metodo toString che serve per stampare gli elementi come se fossero parole.
 	public String toString() {	
+		if (stringa == null)
+			return null;
 		String s = "";
 		for (char c : this.stringa) {
 			s += c;
