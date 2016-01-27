@@ -9,6 +9,7 @@ public class StringaTest {
 		Testo tutti i metodi creati nella classe Stringa
 		*/
 		
+		// Attenzione: Java riconosce 'a' come char, "a" come String.
 		Stringa s1 = new Stringa('c');
 		Stringa s2 = new Stringa('c', 'i', 'a', 'o');
 		Stringa s3 = new Stringa('c', 'i', 'a', 'o');
@@ -72,16 +73,14 @@ public class StringaTest {
 		print(stringhe);
 	}
 	
-	// 9.2 Creo nella stessa classe amche tutti i metodi di ordinamento.
-	// Non creo invece la variabile statica che rappresenta l'array di stringhe,
-	// perché lo passo direttamente al metodo di ordinamento.
+	// 9.2 Creo nella stessa classe anche tutti i metodi di ordinamento.
 		
 	/*
 	9.2.1
 	Metodo selectionSort decrescente
 	Un algoritmo di ordinamento è basato esclusivamente sulla velocità. Creare tre metodi che
 	si chiamano uno con l'altro invece di creare un unico metodo, rallenta di molto le
-	prestazioni dell'algoritmo. Dal momento che sono solo 15 righe di codice, vale la pena
+	prestazioni dell'algoritmo. Dal momento che sono solo 14 righe di codice, vale la pena
 	scriverle in un metodo unico.
 	L'algoritmo inoltre può essere ottimizzato nel metodo findMinPos eliminando
 	l'operazione min = v[i] all'interno del ciclo che di fatto non serve.
@@ -126,7 +125,7 @@ public class StringaTest {
 	Metodo insertionSort decrescente
 	In basso ho fatto lo stesso algoritmo in ordine crescente in 3 forme diverse
 	usando i while: il primo è identico al metodo non commentato, ma usa il while al posto
-	del for. Anche in questo caso non si ottendono ottimizzazioni.
+	del for. Anche in questo caso non si ottengono ottimizzazioni.
 	Il secondo e il terzo, invece, ordinano l'array in modo crescente: il secondo parte a 
 	ordinare dal primo indice dell'array, mentre il terzo parte dall'ultimo indice dell'array.
 	*/
@@ -200,7 +199,8 @@ public class StringaTest {
 	/*
 	9.2.4
 	Metodo mergeSort decrescente
-	In basso ho fatto anche un merge sort crescente dove non serve passare in input degli array.
+	In basso ho fatto anche un merge sort crescente dove, invece cha passare 3 array come
+	parametri, usa solo i valori di sinistra, centro e destra.
 	*/
 	public static void mergeSort() {
 		mergeSort(stringhe, stringhe.length);
@@ -268,5 +268,4 @@ public class StringaTest {
 		for(Stringa s : stringhe)
 			System.out.println(s.toString());
 	}
-	
 }
