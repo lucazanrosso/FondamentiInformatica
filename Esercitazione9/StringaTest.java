@@ -64,9 +64,10 @@ public class StringaTest {
 		System.out.println("\nArray strighe: ");
 		print(stringhe);
 		
-		//insertionSort();
 		//selectionSort();
-		bubbleSort();
+		//insertionSort();
+		//bubbleSort();
+		mergeSort();
 		System.out.println("\nArray strighe selectionSort: ");
 		print(stringhe);
 	}
@@ -82,11 +83,10 @@ public class StringaTest {
 	si chiamano uno con l'altro invece di creare un unico metodo, rallenta di molto le
 	prestazioni dell'algoritmo. Dal momento che sono solo 15 righe di codice, vale la pena
 	scriverle in un metodo unico.
-	L'algoritmo può inoltre essere ottimizzato nel primo for ponendo la lunghezza - 1 come
-	valore finale.
-	In ogni caso non riesco a trovare le slide del Prof. Canazza e non capisco bene cosa 
-	cambi usare il while o il for. Usando il while infatti non si avrebbe
-	comunque nessuna ottimizzazione, perché i cicli da esequire sono sempe n-1.
+	L'algoritmo inoltre può essere ottimizzato nel metodo findMinPos eliminando
+	l'operazione min = v[i] all'interno del ciclo che di fatto non serve.
+	Non capisco bene cosa cambi usare il while o il for. Usando il while infatti non si 
+	avrebbe comunque nessuna ottimizzazione, perché i cicli da esequire sono sempe n-1.
 	Riporto tutti e due i metodi, con il while commentato.
 	*/
 	public static void selectionSort() {
@@ -123,12 +123,24 @@ public class StringaTest {
 	
 	/*
 	9.2.2
-	Metodo insertionSort decrescente.
-	in basso invece ho fatto lo stesso algoritmo in ordine crescente in due forme diverse:
-	Il primo parte dal primo indice dell'array mentre il secondo parte dall'ultimo indice
-	dell'array;
+	Metodo insertionSort decrescente
+	In basso ho fatto lo stesso algoritmo in ordine crescente in 3 forme diverse
+	usando i while: il primo è identico al metodo non commentato, ma usa il while al posto
+	del for. Anche in questo caso non si ottendono ottimizzazioni.
+	Il secondo e il terzo, invece, ordinano l'array in modo crescente: il secondo parte a 
+	ordinare dal primo indice dell'array, mentre il terzo parte dall'ultimo indice dell'array.
 	*/
 	public static void insertionSort() {
+		for (int i = 1; i < stringhe.length; i++) {
+			Stringa temp = stringhe[i];
+			int j;
+			for (j = i - 1; j >= 0 && stringhe[j].compareTo(temp) < 0; j--)
+				stringhe[j + 1] = stringhe[j];
+			stringhe[j + 1] = temp;
+		}
+	}
+	
+	/*public static void insertionSort() {
 		for (int i = 1; i < stringhe.length; i++) {
 			Stringa temp = stringhe[i];
 			int j = i - 1;
@@ -138,7 +150,7 @@ public class StringaTest {
 			}
 			stringhe[j + 1] = temp;
 		}
-	}
+	}*/
 	
 	/*public static void insertionSort() {
 		for (int i = 1; i < stringhe.length; i++) {
@@ -184,6 +196,74 @@ public class StringaTest {
 			}
 		}
 	}
+	
+	/*
+	9.2.4
+	Metodo mergeSort decrescente
+	In basso ho fatto anche un merge sort crescente dove non serve passare in input degli array.
+	*/
+	
+	public static void mergeSort() {
+		mergeSort(stringhe, stringhe.length);
+	}
+	
+	private static void mergeSort(Stringa[] v, int size) {
+		if (size < 2)
+			return;
+		int mid = size / 2;
+		Stringa[] left = new Stringa[mid];
+		Stringa[] right = new Stringa[size - mid];
+		System.arraycopy(v, 0, left, 0, mid);
+		System.arraycopy(v, mid, right, 0, size - mid);
+		mergeSort(left, mid);
+		mergeSort(right, size - mid);
+		merge(v, left, right);
+	}
+	
+	private static void merge(Stringa[] v, Stringa[] v1, Stringa[] v2) {
+		int i = 0, i1 = 0, i2 = 0;
+		while (i1 < v1.length && i2 < v2.length)
+			if (v1[i1].compareTo(v2[i2]) > 0)
+				v[i++] = v1[i1++];
+			else
+				v[i++] = v2[i2++];
+		while (i1 < v1.length)
+			v[i++] = v1[i1++];
+		while (i2 < v2.length)
+			v[i++] = v2[i2++];
+	}
+	
+	/*public static void mergeSort() {
+		mergeSort(0, stringhe.length);
+	}
+	
+	private static void mergeSort(int left, int right) {
+		if (left < right) {
+			int center = (left + right) / 2;
+			mergeSort(left, center);
+			mergeSort(center + 1, right);
+			merge(left, center, right);
+		}
+	}
+	
+	private static void merge(int left, int center, int right) {
+		Stringa [] a = new Stringa[right - left + 1];
+		int i = left;
+		int j = center + 1;
+		int k = 1;
+		while (i <= center && j < right) {
+			if (stringhe[j].compareTo(stringhe[i]) < 0)
+				a[k++] = stringhe[i++];
+			else
+				a[k++] = stringhe[j++];
+		}
+		while (i <= center)
+			a[k++] = stringhe[i++];
+		while (j < right)
+			a[k++] = stringhe[j++];
+		for (i = left, k = 1; i < right; i++, k++)
+			stringhe[i] = a[k];
+	}*/
 	
 	public static void print(Stringa[] stringhe) {
 		for(Stringa s : stringhe)
