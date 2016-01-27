@@ -13,4 +13,12 @@ public class Nodo {
 	public Stringa getStringa() {
 		return stringa;
 	}
+	
+	public int getNodoSx() {
+		return nodoSx;
+	}
+	
+	public int getNodoDx() {
+		return nodoDx;
+	}
 }
