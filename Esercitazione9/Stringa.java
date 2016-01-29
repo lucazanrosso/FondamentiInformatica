@@ -84,7 +84,7 @@ public class Stringa {
 	Metodo substring
 	Dal momento che non posso passare al costruttore un array di char (java consente di usare
 	o "char... chars" o "char[] chars", ma non tutti e due insieme) sono costretto a istanziare
-	un ottetto Stringa con nessun parametro e a modificare direttamente la variabile stringa.
+	un oggetto Stringa con nessun parametro e a modificare direttamente la variabile stringa.
 	*/
 	public Stringa substring(int start, int end) {
 		Stringa s2 = new Stringa();

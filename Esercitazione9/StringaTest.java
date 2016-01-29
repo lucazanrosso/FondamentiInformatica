@@ -66,9 +66,9 @@ public class StringaTest {
 		print(stringhe);
 		
 		//selectionSort();
-		//insertionSort();
+		insertionSort();
 		//bubbleSort();
-		mergeSort();
+		//mergeSort();
 		System.out.println("\nArray strighe ordinato: ");
 		print(stringhe);
 	}
@@ -123,7 +123,7 @@ public class StringaTest {
 	/*
 	9.2.2
 	Metodo insertionSort decrescente
-	In basso ho fatto lo stesso algoritmo in ordine crescente in 3 forme diverse
+	In basso ho fatto lo stesso algoritmo in 3 forme diverse
 	usando i while: il primo è identico al metodo non commentato, ma usa il while al posto
 	del for. Anche in questo caso non si ottengono ottimizzazioni.
 	Il secondo e il terzo, invece, ordinano l'array in modo crescente: il secondo parte a 
@@ -143,10 +143,8 @@ public class StringaTest {
 		for (int i = 1; i < stringhe.length; i++) {
 			Stringa temp = stringhe[i];
 			int j = i - 1;
-			while(j >= 0 && stringhe[j].compareTo(temp) < 0) {
-				stringhe[j + 1] = stringhe[j];
-				j--;
-			}
+			while(j >= 0 && stringhe[j].compareTo(temp) < 0)
+				stringhe[j + 1] = stringhe[j--];
 			stringhe[j + 1] = temp;
 		}
 	}*/
@@ -155,10 +153,8 @@ public class StringaTest {
 		for (int i = 1; i < stringhe.length; i++) {
 			Stringa temp = stringhe[i];
 			int j = i - 1;
-			while(j >= 0 && stringhe[j].compareTo(temp) > 0) {
-				stringhe[j + 1] = stringhe[j];
-				j--;
-			}
+			while(j >= 0 && stringhe[j].compareTo(temp) > 0)
+				stringhe[j + 1] = stringhe[j--];
 			stringhe[j + 1] = temp;
 		}
 	}*/
@@ -167,10 +163,8 @@ public class StringaTest {
 		for (int i = stringhe.length - 2; i >= 0; i--) {
 			Stringa temp = stringhe[i];
 			int j = i + 1;
-			while(j <= stringhe.length - 1 && stringhe[j].compareTo(temp) < 0) {
-				stringhe[j - 1] = stringhe[j];
-				j++;
-			}
+			while(j <= stringhe.length - 1 && stringhe[j].compareTo(temp) < 0)
+				stringhe[j - 1] = stringhe[j++];
 			stringhe[j - 1] = temp;
 		}
 	}*/
@@ -178,8 +172,8 @@ public class StringaTest {
 	/*
 	9.2.3
 	Metodo bubbleSort decrescente
-	Ho deciso di usare un'implementazione diversa rispetto a quella fatta dal prof. Canazza,
-	perché mi sembra più chiara e performante.
+	Ho deciso di usare un'implementazione leggermente diversa rispetto a quella fatta 
+	dal prof. Canazza, perché mi sembra più chiara e performante.
 	*/
 	public static void bubbleSort() {
 		boolean scambio = true;
