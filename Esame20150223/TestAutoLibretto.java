@@ -25,9 +25,9 @@ public class TestAutoLibretto {
 		
 		// Controllo, attraverso gli oggetti Libretto, se i due oggetti Auto hanno la stessa provincia e/o lo stesso proprietario
 		System.out.println("Le due auto hanno la stessa provincia? " + 
-				(boolean) (l1.getAuto().getProvincia() == l2.getAuto().getProvincia()) + "\n");
+				(l1.getAuto().getProvincia() == l2.getAuto().getProvincia()) + "\n");
 		System.out.println("Le due auto hanno lo stesso proprietario? " + 
-				(boolean) (l1.getAuto().getProprietario() == l2.getAuto().getProprietario()));
+				(l1.getAuto().getProprietario() == l2.getAuto().getProprietario()));
 		
 		// Aggiorno il kilometraggio del primo oggetto Libretto
 		Libretto.aggiornaKilometraggio(l1, 4600);

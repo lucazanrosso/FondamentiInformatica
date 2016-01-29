@@ -24,8 +24,8 @@ public class Auto {
 		char primoCarattere = this.alfabeto.charAt((int) (Math.random() * 26));
 		char secondoCarattere = this.alfabeto.charAt((int) (Math.random() * 26));
 		this.contaMoto++;
-		String terzoQuartoQuintoCarattere = String.format("%03d", this.contaMoto);
-		String codiceImmatricolazione = primoCarattere + "" +  secondoCarattere + terzoQuartoQuintoCarattere;
+		String terzoQuartoQuintoSestoCarattere = String.format("%04d", this.contaMoto);
+		String codiceImmatricolazione = primoCarattere + "" +  secondoCarattere + terzoQuartoQuintoSestoCarattere;
 		return codiceImmatricolazione;
 	}
 	
