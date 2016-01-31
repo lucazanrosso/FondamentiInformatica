@@ -37,11 +37,11 @@ public class SearchAndSort {
 	Ricerca lineare che ritorna la posizione del valore, se c'è
 	*/
 	public static int linearSearch(int value) {
-    for  (int i = 0; i < vett.length; i++)
-      if (vett[i] == value)
+		for  (int i = 0; i < vett.length; i++)
+			if (vett[i] == value)
 				// Per ritornare il valore basta cambiare i con value
 				return i;
-    return -1;
+		return -1;
   }
 	
 	/*
@@ -70,28 +70,28 @@ public class SearchAndSort {
 	Max Search che ritorna la posizione del valore se c'è
 	*/
 	public static int maxSearch(int value) {
-    int max = 0;
-    for (int i = 0; i < vett.length; i++)
+		int max = 0;
+		for (int i = 0; i < vett.length; i++)
 			// Per la ricerca del minimo basta cambiare il > con il <
-      if (vett[i] > vett[max])
+			if (vett[i] > vett[max])
 				max = i;
-    if (value == vett[max])
-      // Per ritornare il valore basta cambiare max con value
+		if (value == vett[max])
+			// Per ritornare il valore basta cambiare max con value
 			return max;
-    else
-      return -1;
+		else
+			return -1;
   }
 	
 	/*
 	Invert
 	*/
 	public static void invert() {
-    for (int i = 0; i < (vett.length / 2); i++) {
-      int temp = vett[i];
-      vett[i] = vett[vett.length - 1 - i];
-      vett[vett.length - 1 - i] = temp;
-    }
-  }
+		for (int i = 0; i < (vett.length / 2); i++) {
+			int temp = vett[i];
+			vett[i] = vett[vett.length - 1 - i];
+			vett[vett.length - 1 - i] = temp;
+		}
+	}
 	
 	/*
 	Selection Sort crescente in stile Canazza
