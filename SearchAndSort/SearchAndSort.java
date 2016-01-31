@@ -42,7 +42,7 @@ public class SearchAndSort {
 				// Per ritornare il valore basta cambiare i con value
 				return i;
 		return -1;
-  }
+	}
 	
 	/*
 	Ricerca binaria crescente che ritorna la posizione del valore, se c'è
@@ -80,7 +80,7 @@ public class SearchAndSort {
 			return max;
 		else
 			return -1;
-  }
+	}
 	
 	/*
 	Invert
