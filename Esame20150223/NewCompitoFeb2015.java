@@ -21,6 +21,7 @@ public class NewCompitoFeb2015 {
 		a = "121";
 		b = "212";
 		change(a, b, v);
+		a = a + v[1];
 		
 		System.out.println("QUINTA STAMPA");
 		System.out.println(a);
