@@ -19,18 +19,52 @@ public class Point {
 		return Math.sqrt(base * base + altezza * altezza);
 	}
 	
-	public static void main(String[] args) {
-		
-	}
-	
 	@Override
 	public String toString() {
-		return "x: " + this.x + "\n" + 
-				"y: " + this.y;
+		return "x: " + this.x + "y: " + this.y;
 	}
 	
 	public static void main(String[] args) {
-		Point vett[] = new Point;
+		Point vett[] = new Point[4];
+		a = 4;
+		b = 3;
+		Point p1 = new Point();
+		Point p2 = new Point(a, b);
+		vett[1] = p1;
+		vett[2] = p2;
+		double dist21 = p1.dist(p2);
+		
+		for(int i = 0; i < vett.length; i++)
+			System.out.println(vett[i]);
+		System.out.println(dist21);
+		
+		modifica(vett, p1);
+		dist21 = p1.dist(p2);
+		
+		for(int i = 0; i < vett.length; i++)
+			System.out.println(vett[i]);
+		System.out.println(dist21);
 	}
 	
+	public static void modifica(Point aaa[], Point z) {
+		c = a + a;
+		d = b + b;
+		Point p2 = new Point();
+		Point p3 = new Point(c, d);
+		aaa[1] = z;
+		aaa[2] = p2;
+		aaa[3] = p3;
+		double dist32 = aaa[2].dist(aaa[3]);
+		
+		for (int i = 0; i < aaa.length; i++)
+			System.out.println(aaa[i]);
+		System.out.println(dist32);
+		
+		z = new Point(a, b);
+		aaa[2] = aaa[3];
+		aaa = new Point[5];
+		
+		for (int i = 0; i < aaa.length; i++)
+			System.out.println(aaa[i]);
+	}
 }
