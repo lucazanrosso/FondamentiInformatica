@@ -68,3 +68,26 @@ public class Point {
 			System.out.println(aaa[i]);
 	}
 }
+
+/*
+null
+x: 0.0y: 0.0
+x: 4.0y: 3.0
+null
+5.0
+null
+x: 0.0y: 0.0
+x: 0.0y: 0.0
+x: 8.0y: 6.0
+10.0
+null
+null
+null
+null
+null
+null
+x: 0.0y: 0.0
+x: 8.0y: 6.0
+x: 8.0y: 6.0
+5.0
+*/

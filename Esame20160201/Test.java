@@ -28,3 +28,19 @@ public class Test {
 		System.out.println("I due cani hanno lo stesso proprietario? " + co1.getCane().getCinofilo().getNomeCognome().equals(co2.getCane().getCinofilo().getNomeCognome()));
 	}
 }
+
+/*
+Identificativo: ZZZ0000100
+Cinofilo: Luca Zanrosso
+Anno nascita: 2008
+Anno adesione: 2013
+Anno stipula contratto: 2013
+Identificativo: ABC0000200
+Cinofilo: Andrea Zanrosso
+Anno nascita: 2012
+Anno adesione: 2015
+Anno stipula contratto: 2015
+I due cani sono uguali? false
+I due cani hanno la stessa razza? true
+I due cani hanno lo stesso proprietario? false
+*/
