@@ -5,7 +5,7 @@ import java.util.Arrays;
 CLASSE ARITMETICA
 Questa classe contiene tutti i metodi legati alle operazioni matematiche fatti nelle esercitazioni
 0, 1, 2, 4, 7 e 8. In questa classe non ho mai usato i simboli +, -, *, /, %, ecc., ma ho usato 
-sempre i metodi creati, quindi somma, differenzaRelatica, prodotto, ecc. Ho fatto questo
+sempre i metodi creati, quindi somma, differenzaRelativa, prodotto, ecc. Ho fatto questo
 non per migliorare la leggibilità, che anzi peggiora, ma per dimostrare che i metodi funzionano.
 */
 public class Aritmetica {
@@ -19,7 +19,7 @@ public class Aritmetica {
 	/*
 	MAIN	
 	Questo è il metodo principale della classe, dove vengono presi in input il tipo di operazione 
-	che si vuole eseguire e il parametri dell'operazione.
+	che si vuole eseguire e i parametri dell'operazione.
 	*/
 	public static void main (String[] args) {
 		inizializzaOperazioni();
@@ -647,7 +647,7 @@ public class Aritmetica {
 	
 	/*
 	7.2.1
-	Prececessore costruito con il formalismo di Kleene
+	Predecessore costruito con il formalismo di Kleene
 	*/
 	public static int predecessoreKleene(int x) {
 		if (x == 0)
@@ -735,7 +735,7 @@ public class Aritmetica {
 	
 	/*
 	7.3.3
-	Metodo controllaMultiplo e multiplo. Ho indrodotto una seconda variabile in input in modo
+	Metodo controllaMultiplo e multiplo. Ho introdotto una seconda variabile in input in modo
 	da generalizzare il metodo, quindi x non deve essere per forza multiplo 33. 
 	*/
 	public static boolean controllaMultiplo(int x, int y) {
@@ -809,7 +809,7 @@ public class Aritmetica {
 	8.2.1
 	Metodi predecessore, somma, prodotto, differenzaRelativa nel formalismo di McCarthy.
 	Il predecessore, così come descritto nell'esercitazione, non funziona se si inserisce 0
-	come parametro, perchè andrà in loop. Inserisco quindi un controllo nel prececessore
+	come parametro, perchè andrà in loop. Inserisco quindi un controllo nel prececessore.
 	*/	
 	public static int predecessoreMcCarthy(int x) {
 		if (x == 0)
