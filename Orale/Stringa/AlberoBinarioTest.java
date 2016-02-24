@@ -6,9 +6,9 @@ public class AlberoBinarioTest {
 		9.3
 		Creo un oggetto AlberoBinario e come parametri istanzio direttamente tutti gli oggetti 
 		Nodo. Questo porta a ridurre di molto il codice, oltre che ad essere più performante.
-		Posso passare come parametri quanti oggetti Nodo voglio, il perché è spiegato 
-		nel costruttore della classe Stringa che, come struttura, è identico al costruttore 
-		della classe AlberoBinario.
+		Posso passare come parametri quanti oggetti Nodo voglio, perché sto utilizzando
+		i varargs: il dettaglio della spiegazione si trova nel costruttore della classe Stringa 
+		che, come struttura, è identico al costruttore della classe AlberoBinario.
 		Per le stringhe ho deciso di utilizzare la classe Stringa fatta nel punto 9.1, così da
 		dimostrare che tutto funziona correttamente.
 		In questo albero binario la radice parte dall'indice 1, come spiegato in aula e 
@@ -17,9 +17,9 @@ public class AlberoBinarioTest {
 		di un parent (o nodo genitore), al posto di un altro child, l'algoritmo depthFirstSearch 
 		continuerà a passare dal child al parent e viceversa, e il programma andrà in loop. 
 		NOTA: se nei nodi "belli" e "gli" inserisco come parametri 4, 5 e 6, 7, l'algoritmo
-		funziona lo stesso, anche se nella posizione 5 e 6 non ci sono nodi.
+		funziona lo stesso, anche se nella posizione 5 e 7 non ci sono nodi.
 		Infatti mettendo zero dove non si sono i child, il programma controlla
-		cosa c'è nella posizione zero (cioè null), il che equivale a mettere il numero di child
+		cosa c'è nella posizione zero (cioè null), il che equivale a mettere il numero di child 
 		corretto, perché anche quelli sono null.
 		*/
 		AlberoBinario alberoBinario = new AlberoBinario(
@@ -57,7 +57,7 @@ Depth-first search:
 9 tanti
 3 gli
 6 binari
-14 nodi
+13 nodi
 
 Breadth-first search:
 1 che
@@ -67,5 +67,5 @@ Breadth-first search:
 6 binari
 8 con
 9 tanti
-14 nodi
+13 nodi
 */
