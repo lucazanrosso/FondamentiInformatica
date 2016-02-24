@@ -7,11 +7,11 @@ public class Stringa {
 	caratteri come parametri. 
 	Faccio un appunto importante sul parametro del secondo costruttore: non mi sembra ci sia
 	indicata questa soluzione nelle slide caricate insieme all'esercitazione, ma Java offre
-	un potente strumento per l'inserimento di una quantità variabile di parametri, purché siano
-	dello stesso tipo (char in questo caso). Come si può notare dalla classe di test, utilizzando
-	questo metodo non occorre istanziare un array e poi passarlo al costruttore come parametro, 
-	ma basta passare direttamente dei char. Questi char verranno poi trasformati direttamente 
-	in un array di char.
+	un potente strumento (che si chiama varargs) per l'inserimento di una quantità variabile 
+	di parametri, purché siano dello stesso tipo (char in questo caso). Come si può notare 
+	dalla classe di test, utilizzando questo metodo non occorre istanziare un array e poi 
+	passarlo al costruttore come parametro, ma basta passare direttamente dei char. 
+	Questi char verranno poi trasformati direttamente in un array di char.
 	Dopo i costruttori ho scritto i soliti metodi set e get.
 	*/
 	private char[] stringa;
