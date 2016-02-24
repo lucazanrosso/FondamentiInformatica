@@ -167,7 +167,8 @@ public class StringaTest {
 	9.2.3
 	Metodo bubbleSort decrescente
 	Ho deciso di usare un'implementazione leggermente diversa rispetto a quella fatta 
-	dal prof. Canazza.
+	dal prof. Canazza. Il bubble sort commentato è quello che sposta gli elementi più grandi
+	da destra a sinistra
 	*/
 	public static void bubbleSort() {
 		boolean scambio = true;
@@ -183,6 +184,21 @@ public class StringaTest {
 			}
 		}
 	}
+	
+	/*public static void bubbleSort() {
+		boolean scambio = true;
+		while (scambio) {
+			scambio = false;
+			for (int i = stringhe.length - 2; i >= 0; i--) {
+				if (stringhe[i + 1].compareTo(stringhe[i]) > 0) {
+					Stringa temp = stringhe[i];
+					stringhe[i] = stringhe[i + 1];
+					stringhe[i + 1] = temp;
+					scambio = true;
+				}
+			}
+		}
+	}*/
 	
 	/*
 	9.2.4
