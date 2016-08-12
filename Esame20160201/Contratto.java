@@ -14,7 +14,7 @@ public class Contratto {
 		return this.cane;
 	}
 	
-	public int annoStipula() {
+	public int getAnnoStipula() {
 		return annoStipula;
 	}
 	

@@ -16,9 +16,9 @@ public class SearchAndSort {
 		System.out.println("\nArray ordinato");
 		//selectionSort();
 		//insertionSort();
-		//bubbleSort();
+		bubbleSort();
 		//sss();
-		mergeSort();
+		//mergeSort();
 		print();
 		
 		System.out.println("\nposizione numero 46");
@@ -151,8 +151,6 @@ public class SearchAndSort {
 	
 	/*
 	Bubble Sort crescente
-	Non si capisce un cazzo dalle slide di Canazza, però questa è l'implementazion più performante
-	del bubble sort, in basso ho messo anche quella scritta nella slide BubbleSortEvoluzione.
 	*/
 	public static void bubbleSort() {
 		boolean scambio = true;
@@ -171,7 +169,7 @@ public class SearchAndSort {
 	}
 	
 	/*
-	Bubble Sort evoluzione (Attacco +10, Difesa +5)
+	Bubble Sort evoluzione
 	*/
 	public static void sss ( ) {
 	for (int i = (vett.length - 1); i >= 1; i = i-1)

@@ -41,9 +41,13 @@ public class Point {
 		modifica(vett, p1);
 		dist21 = p1.dist(p2);
 		
+		System.out.println("Z" + vett[1]);
+		
 		for(int i = 0; i < vett.length; i++)
 			System.out.println(vett[i]);
 		System.out.println(dist21);
+		
+		System.out.println("Z" + vett[1]);
 	}
 	
 	public static void modifica(Point aaa[], Point z) {
@@ -61,7 +65,10 @@ public class Point {
 		System.out.println(dist32);
 		
 		z = new Point(a, b);
+		System.out.println("Z" + aaa[1]);
 		aaa[2] = aaa[3];
+		
+		System.out.println("Z" + aaa[1]);
 		aaa = new Point[5];
 		
 		for (int i = 0; i < aaa.length; i++)

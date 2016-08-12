@@ -6,7 +6,7 @@ public class Test {
 		
 		Cane ca1 = new Cane("ZZZ", c1, 2008, 2013);
 		Cane ca2 = new Cane("ABC", c2, 2012, 2015);
-		
+
 		c1.setCane(ca1);
 		c2.setCane(ca2);
 		

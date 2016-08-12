@@ -1,7 +1,7 @@
 public class Cane {
 	
 	private String razza;
-	//private int matricola;
+	private int matricola;
 	private int abilita;
 	private Cinofilo cinofilo;
 	private int annoNascita;
@@ -15,7 +15,7 @@ public class Cane {
 		this.annoNascita = annoNascita;
 		this.annoAdesione = annoAdesione;
 		this.contaCane++;
-		//this.matricola = this.contaCane;
+		this.matricola = this.contaCane;
 		this.setIdentificativo();
 	}
 	
@@ -35,9 +35,9 @@ public class Cane {
 		return this.razza;
 	}
 	
-	/*public String getMatricola() {
+	public String getMatricola() {
 		return String.format("%05d", this.matricola);
-	}*/
+	}
 	
 	public int getAbilita() {
 		return this.abilita;
@@ -56,19 +56,21 @@ public class Cane {
 	}
 	
 	@Override
-	public boolean equals(Object o) {
-		Cane cane = (Cane) o;
-		if (this.getIdentificativo() == cane.getIdentificativo())
+	public boolean equals(Object obj) {
+		Cane cane = (Cane) obj;
+		if (this.matricola == cane.matricola)
 			return true;
 		return false;
 	}
 	
 	public void modificaRazza(String razza) {
 		this.razza = razza;
+		this.setIdentificativo();
 	}
 	
 	public static void aggiornaAbilita(Cane cane, int nuoveAbilita) {
 		cane.abilita += nuoveAbilita;
+		cane.setIdentificativo();
 	}
 	
 	@Override

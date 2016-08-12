@@ -33,8 +33,8 @@ public class Cinofilo {
 		this.cane = cane;
 	}
 	
-	public int getScadenzaIscrizione() {
-		return this.annoIscrizione + this.durataIscrizione;
+	public static int getScadenzaIscrizione(Cinofilo cinofilo) {
+		return cinofilo.annoIscrizione + cinofilo.durataIscrizione;
 	}
 	
 }
